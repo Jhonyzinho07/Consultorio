@@ -3,257 +3,325 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sorrindo a dois - Dr. Edson Gonçalves Junior</title>
+    <title>Dr. Edson Gonçalves Junior - Cirurgião Dentista</title>
     
     <!-- Carrega o Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Carrega a fonte Inter -->
+    <!-- Carrega as fontes: Inter (Texto) e Playfair Display (Títulos/Elegância) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
     
-    <!-- 
-      NOVO: Estilo de paleta "Black & Gold" 
-      Inspirado na referência.
-    -->
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
+    <!-- Configuração de Cores da Logo -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            DEFAULT: '#C5A059', 
+                            light: '#DCC388',
+                            dark: '#9E7F43',
+                            hover: '#B08D4C',
+                        },
+                        dark: {
+                            950: '#0a0a0a', 
+                            900: '#111111',
+                            800: '#1a1a1a',
+                            700: '#262626',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
         }
-        /* Cor primária personalizada (Dourado/Âmbar) */
-        .text-primary { color: #f59e0b; } /* amber-500 */
-        .bg-primary { background-color: #f59e0b; }
-        .border-primary { border-color: #f59e0b; }
-        .hover\:bg-primary-dark:hover { background-color: #d97706; } /* amber-600 */
+    </script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+        .text-glow { text-shadow: 0 0 20px rgba(197, 160, 89, 0.3); }
+        .border-gradient { border-image: linear-gradient(to right, #9E7F43, #DCC388, #9E7F43) 1; }
     </style>
 </head>
-<body class="bg-black text-gray-300">
+<body class="bg-dark-950 text-gray-300 antialiased selection:bg-gold selection:text-dark-900">
 
-    <!-- 
-      HEADER (Cabeçalho)
-      Atualizado para o tema escuro.
-    -->
-    <header class="bg-gray-950 shadow-lg sticky top-0 z-50">
+    <!-- HEADER -->
+    <header class="bg-dark-900/95 backdrop-blur-md border-b border-white/10 sticky top-0 z-50 transition-all duration-300">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <!-- Logo/Nome da Empresa -->
-            <a href="#" class="text-2xl font-bold text-primary">
-                Sorrindo a dois
+            
+            <!-- LOGO -->
+            <a href="#" class="block hover:opacity-90 transition">
+                <img src="logo.png" alt="Dr. Edson Gonçalves Junior" class="h-14 w-auto object-contain">
             </a>
             
-            <!-- Links de Navegação (Menu) -->
-            <div class="hidden md:flex space-x-6">
-                <a href="#sobre" class="text-gray-300 hover:text-primary transition duration-300">Sobre Nós</a>
-                <a href="#servicos" class="text-gray-300 hover:text-primary transition duration-300">Tratamentos</a>
-                <a href="#contato" class="text-gray-300 hover:text-primary transition duration-300">Contato</a>
+            <!-- Menu Desktop -->
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#sobre" class="text-sm font-medium uppercase tracking-widest text-gray-300 hover:text-gold transition duration-300">Sobre</a>
+                <a href="#servicos" class="text-sm font-medium uppercase tracking-widest text-gray-300 hover:text-gold transition duration-300">Tratamentos</a>
+                <a href="#contato" class="text-sm font-medium uppercase tracking-widest text-gray-300 hover:text-gold transition duration-300">Contato</a>
+                
+                <a href="#contato" class="bg-transparent border border-gold text-gold px-6 py-2 rounded font-semibold hover:bg-gold hover:text-dark-900 transition duration-300 text-sm tracking-wide">
+                    Agendar Consulta
+                </a>
             </div>
             
-            <!-- Botão Call-to-Action (CTA) -->
-            <a href="#contato" class="hidden md:block bg-primary text-gray-900 px-5 py-2 rounded-lg font-semibold shadow-sm hover:bg-primary-dark transition duration-300">
-                Agende sua Consulta
-            </a>
-            
-            <!-- Botão de Menu Mobile (para telemóveis) -->
-            <button id="mobile-menu-button" class="md:hidden text-primary focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            <!-- Botão Mobile -->
+            <button id="mobile-menu-button" class="md:hidden text-gold p-2 hover:bg-dark-800 rounded transition">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
         </nav>
         
-        <!-- Menu Mobile (escondido por defeito) -->
-        <div id="mobile-menu" class="hidden md:hidden bg-gray-950 shadow-lg">
-            <a href="#sobre" class="block px-6 py-3 text-gray-300 hover:bg-gray-800">Sobre Nós</a>
-            <a href="#servicos" class="block px-6 py-3 text-gray-300 hover:bg-gray-800">Tratamentos</a>
-            <a href="#contato" class="block px-6 py-3 text-gray-300 hover:bg-gray-800">Contato</a>
-            <a href="#contato" class="block px-6 py-3 m-4 bg-primary text-gray-900 text-center rounded-lg font-semibold">
-                Agende sua Consulta
-            </a>
+        <!-- Menu Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden bg-dark-900 border-t border-gray-800">
+            <div class="flex flex-col p-4 space-y-4">
+                <a href="#sobre" class="text-gray-300 hover:text-gold py-2 border-b border-gray-800">Sobre</a>
+                <a href="#servicos" class="text-gray-300 hover:text-gold py-2 border-b border-gray-800">Tratamentos</a>
+                <a href="#contato" class="text-gray-300 hover:text-gold py-2 border-b border-gray-800">Contato</a>
+                <a href="#contato" class="bg-gold text-dark-900 text-center py-3 rounded font-bold uppercase tracking-wider mt-4">
+                    Agendar Agora
+                </a>
+            </div>
         </div>
     </header>
 
-    <!-- 
-      NOVO: SEÇÃO HERO (Principal)
-      Estilo "full-screen" com imagem de fundo, inspirado na referência.
-    -->
-    <section class="relative h-[70vh] md:h-[80vh] flex items-center justify-center text-center text-white">
-        <!-- Imagem de Fundo e Overlay Escuro -->
-        <div class="absolute inset-0 w-full h-full">
-            <!-- Substitua esta imagem por uma foto do seu consultório -->
-            <img src="https://placehold.co/1920x1080/333333/555555?text=Foto+do+Consultório" alt="Consultório Odontológico Moderno" class="w-full h-full object-cover">
-            <!-- Overlay escuro para legibilidade -->
-            <div class="absolute inset-0 bg-black opacity-60"></div>
+    <!-- HERO SECTION -->
+    <section class="relative h-[85vh] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0">
+            <!-- Imagem: Consultório Moderno -->
+            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=1920" 
+                 alt="Consultório Odontológico Moderno" 
+                 class="w-full h-full object-cover transform scale-105 animate-[pulse_10s_ease-in-out_infinite]">
+            <div class="absolute inset-0 bg-gradient-to-r from-dark-950 via-dark-900/80 to-dark-950/70"></div>
         </div>
         
-        <!-- Conteúdo de Texto (sobre o overlay) -->
-        <div class="relative z-10 container mx-auto px-6">
-            <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight shadow-text">
-                Transformando Vidas e Sorrisos
-            </h1>
-            <p class="text-xl md:text-2xl text-gray-200 mb-8 shadow-text">
-                Odontologia de ponta com foco total na sua biossegurança e acolhimento.
-            </p>
-            <a href="#contato" class="bg-primary text-gray-900 px-8 py-4 rounded-lg font-semibold text-lg shadow-lg hover:bg-primary-dark transition duration-300">
-                Agendar Avaliação
-            </a>
+        <div class="relative z-10 container mx-auto px-6 text-center md:text-left">
+            <div class="md:w-2/3 lg:w-1/2 animate-fadeInUp">
+                <div class="inline-block border-l-4 border-gold pl-4 mb-6">
+                    <p class="text-gold font-medium tracking-[0.2em] uppercase text-sm">Odontologia de Excelência</p>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-2xl">
+                    O seu sorriso é a nossa <br>
+                    <span class="text-gold italic font-serif">obra de arte</span>.
+                </h1>
+                <p class="text-lg text-gray-300 mb-10 font-light leading-relaxed">
+                    Experimente um atendimento exclusivo onde a biossegurança e a tecnologia se encontram para transformar a sua autoestima.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#contato" class="bg-gold text-dark-900 px-8 py-4 rounded font-bold shadow-[0_0_20px_rgba(197,160,89,0.3)] hover:bg-white hover:shadow-white/20 transition duration-300 text-center">
+                        Agendar Avaliação
+                    </a>
+                    <a href="#servicos" class="px-8 py-4 rounded font-bold border border-gray-600 text-white hover:border-gold hover:text-gold transition duration-300 text-center bg-dark-900/50 backdrop-blur-sm">
+                        Conhecer Tratamentos
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- 
-      NOVO: SEÇÃO SOBRE (Biografia)
-      Layout atualizado (foto ao lado do texto)
-    -->
-    <section id="sobre" class="py-24 bg-gray-900">
-        <div class="container mx-auto px-6 max-w-6xl">
-            <div class="flex flex-col md:flex-row items-center gap-12 md:gap-16">
-                <!-- Coluna da Imagem -->
-                <div class="md:w-1/3 w-full">
-                    <!-- Substitua por uma foto sua -->
-                    <img src="https://placehold.co/400x500/f59e0b/333333?text=Dr.+Edson+Gonçalves+Jr." alt="Dr. Edson Gonçalves Junior" class="rounded-lg shadow-2xl w-full h-auto object-cover">
+    <!-- SEÇÃO SOBRE -->
+    <section id="sobre" class="py-24 bg-dark-900 relative">
+        <div class="container mx-auto px-6 max-w-6xl relative z-10">
+            <div class="flex flex-col md:flex-row items-center gap-16">
+                <!-- Foto do Doutor (Placeholder) -->
+                <div class="md:w-5/12 w-full relative group">
+                    <div class="absolute -inset-4 border-2 border-gold/20 rounded-lg transform translate-x-2 translate-y-2 group-hover:translate-x-1 group-hover:translate-y-1 transition duration-500"></div>
+                    <img src="https://placehold.co/400x500/1a1a1a/C5A059?text=Foto+do+Dr.+Edson" 
+                         alt="Dr. Edson Gonçalves Junior" 
+                         class="relative rounded-lg shadow-2xl w-full h-auto object-cover grayscale group-hover:grayscale-0 transition duration-700">
                 </div>
                 
-                <!-- Coluna do Texto -->
-                <div class="md:w-2/3 w-full text-left">
-                    <span class="text-primary font-semibold uppercase">Sobre Nós</span>
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mt-2 mb-6">
+                <div class="md:w-7/12 w-full text-left">
+                    <span class="text-gold tracking-widest uppercase text-sm font-semibold mb-2 block">Sobre o Especialista</span>
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-8">
                         Dr. Edson Gonçalves Junior
                     </h2>
-                    <div class="text-lg text-gray-300 space-y-6">
+                    <div class="space-y-6 text-gray-400 text-lg font-light leading-relaxed">
                         <p>
-                            Cirurgião-Dentista apaixonado pela odontologia e grato pela oportunidade de transformar vidas e sorrisos. Com 7 anos de experiência como coordenador e 9 meses como Cirurgião-Dentista, realizou o sonho de ter um consultório que preza pela biossegurança, segurança do trabalho e respeito ao meio ambiente.
+                            Cirurgião-Dentista com 7 anos de experiência, Dr. Edson combina técnica apurada com uma visão profundamente humana da odontologia.
                         </p>
                         <p>
-                            Acredita que a odontologia vai muito além do tratamento: é prevenção, acolhimento e ciência. Baseia seus atendimentos em técnicas comprovadas, garantindo resultados seguros e duradouros.
+                            O seu consultório foi idealizado para ser um refúgio de segurança e cuidado. Aqui, a <strong class="text-gold">biossegurança</strong> não é apenas um protocolo, é um compromisso inegociável com a sua saúde.
+                        </p>
+                        <p>
+                            <span class="italic text-gray-300">"Cada paciente traz um sonho de sorriso. A minha missão é tornar esse sonho realidade, com respeito, ciência e arte."</span>
                         </p>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 
-      SEÇÃO SERVIÇOS (Tratamentos)
-      Atualizada para o tema escuro.
-    -->
-    <section id="servicos" class="py-24 bg-black">
-        <div class="container mx-auto px-6">
-            <div class="text-center max-w-2xl mx-auto mb-16">
-                <span class="text-primary font-semibold uppercase">Nossos Tratamentos</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-white mt-2">
-                    Cuidando do seu sorriso por completo
-                </h2>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                <!-- Serviço 1: Prevenção -->
-                <div class="bg-gray-900 rounded-lg shadow-lg hover:shadow-primary/20 hover:shadow-xl transition duration-300 overflow-hidden">
-                    <img src="https://placehold.co/600x400/f59e0b/333333?text=Prevenção" alt="Prevenção e Limpeza" class="w-full h-48 object-cover">
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold text-white mb-3">Prevenção e Limpeza</h3>
-                        <p class="text-gray-400">Check-ups regulares e limpezas profundas para manter sua saúde bucal em dia.</p>
-                    </div>
-                </div>
-                <!-- Serviço 2: Estética -->
-                <div class="bg-gray-900 rounded-lg shadow-lg hover:shadow-primary/20 hover:shadow-xl transition duration-300 overflow-hidden">
-                    <img src="https://placehold.co/600x400/f59e0b/333333?text=Clareamento" alt="Clareamento Dental" class="w-full h-48 object-cover">
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold text-white mb-3">Clareamento Dental</h3>
-                        <p class="text-gray-400">Tecnologia de ponta para um sorriso mais branco e brilhante, com segurança.</p>
-                    </div>
-                </div>
-                <!-- Serviço 3: Implantes -->
-                <div class="bg-gray-900 rounded-lg shadow-lg hover:shadow-primary/20 hover:shadow-xl transition duration-300 overflow-hidden">
-                    <img src="https://placehold.co/600x400/f59e0b/333333?text=Implantes" alt="Implantes e Próteses" class="w-full h-48 object-cover">
-                    <div class="p-8">
-                        <h3 class="text-2xl font-bold text-white mb-3">Implantes e Próteses</h3>
-                        <p class="text-gray-400">Soluções modernas para reabilitar seu sorriso, devolvendo a função e a estética.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 
-      SEÇÃO CONTATO E HORÁRIOS
-      Atualizada para o tema escuro.
-    -->
-    <section id="contato" class="py-24 bg-gray-900 text-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center max-w-2xl mx-auto mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mt-2">
-                    Estamos à sua espera
-                </h2>
-                <p class="text-lg text-gray-400 mt-4">
-                    Entre em contato e agende sua avaliação. Vamos juntos cuidar do seu sorriso!
-                </p>
-            </div>
-            
-            <div class="flex flex-col md:flex-row justify-center gap-12 md:gap-24 text-center">
-                <!-- Informação 1: Horários -->
-                <div class="flex-1">
-                    <h3 class="text-2xl font-bold mb-4 text-primary">Horário de Funcionamento</h3>
-                    <div class="text-lg text-gray-300 space-y-2">
-                        <p><strong>Segunda a Sexta:</strong> 08:00 às 19:00</p>
-                        <p><strong>Sábados:</strong> 08:00 às 14:00</p>
-                    </div>
-                </div>
-                
-                <!-- Informação 2: Telefone -->
-                <div class="flex-1">
-                    <h3 class="text-2xl font-bold mb-4 text-primary">Telefone</h3>
-                    <p class="text-3xl font-bold text-white tracking-wider">
-                        (11) 2668-7001
-                    </p>
-                    <p class="text-gray-400 mt-2">Ligue para agendar</p>
-                </div>
-
-                <!-- Informação 3: Localização (Placeholder) -->
-                <div class="flex-1">
-                    <h3 class="text-2xl font-bold mb-4 text-primary">Localização</h3>
-                    <p class="text-lg text-gray-300">
-                        [Aguardando o DIego enviar o endereço]
-                        <br>
-                        Bairro, Cidade - SP
-                    </p>
-                </div>
-            </div>
-
-            <!-- Botão de WhatsApp -->
-            <div class="text-center mt-16">
-                <a href="https://wa.me/5511XXXXXXXXX" 
-                   target="_blank" 
-                   rel="noopener noreferrer" 
-                   class="inline-flex items-center justify-center bg-green-500 hover:bg-green-600 text-white text-lg font-semibold py-4 px-8 rounded-lg shadow-lg transition duration-300">
                     
-                    <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 12c0 1.8.48 3.47 1.34 4.94L2 22l5.3-1.42c1.4.82 3.02 1.3 4.74 1.3h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zM12.04 20.12h-.01c-1.5 0-2.93-.4-4.2-1.1l-.3-.18-3.12.82.84-3.05-.2-.32a8.03 8.03 0 0 1-1.22-4.28c0-4.47 3.63-8.1 8.1-8.1s8.1 3.63 8.1 8.1c0 4.47-3.64 8.1-8.1 8.1zM17.14 14.3c-.28-.14-1.66-.82-1.91-.91-.25-.09-.43-.14-.62.14-.19.28-.72.91-.89 1.1-.16.19-.32.21-.6.07-.28-.14-1.17-.43-2.23-1.36-.83-.73-1.39-1.63-1.53-1.91-.14-.28-.01-.43.13-.56.13-.12.28-.32.42-.48.14-.16.19-.28.28-.47.09-.19.05-.36-.02-.5-.07-.14-.62-1.49-.85-2.04-.23-.55-.46-.48-.62-.48-.16 0-.35-.05-.52-.05-.17 0-.45.07-.68.32-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.16 1.74 2.67 4.22 3.72.59.25 1.05.4 1.41.51.58.17 1.11.15 1.52.09.46-.07 1.42-.58 1.62-1.14.2-.55.2-1.03.14-1.14-.07-.11-.25-.17-.52-.31z"></path></svg>
-                    Fale Conosco pelo WhatsApp
-                </a>
+                    <div class="mt-10 flex items-center gap-4">
+                        <div class="h-px flex-1 bg-gray-800"></div>
+                        <span class="text-gold text-sm uppercase tracking-widest">CROSP 172088</span>
+                    </div>
+                </div>
             </div>
-
         </div>
     </section>
 
-    <!-- 
-      FOOTER (Rodapé)
-    -->
-    <footer class="bg-gray-950 text-gray-500 py-10">
-        <div class="container mx-auto px-6 text-center">
-            <p>&copy; 2025 Sorrindo a dois. Todos os direitos reservados.</p>
+    <!-- SEÇÃO SERVIÇOS (IMAGENS LOCAIS) -->
+    <section id="servicos" class="py-24 bg-dark-950">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <span class="text-gold uppercase tracking-widest text-sm font-bold">Excelência Clínica</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mt-3 mb-6">Tratamentos Especializados</h2>
+                <p class="text-gray-400 font-light">Tecnologia avançada para resultados previsíveis e duradouros.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Card 1: Prevenção -->
+                <div class="group bg-dark-900 rounded-xl overflow-hidden shadow-lg border border-gray-800 hover:border-gold/40 transition duration-500">
+                    <div class="h-56 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition duration-500 z-10"></div>
+                        <!-- Imagem Local: Prevenção -->
+                        <img src="Prevenção e Profilaxia.jpeg" 
+                             alt="Procedimento de Prevenção e Limpeza" 
+                             class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700">
+                    </div>
+                    <div class="p-8 relative">
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-gold transition">Prevenção e Profilaxia</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed mb-4">
+                            Check-ups detalhados e limpezas profundas para garantir que a sua saúde bucal esteja sempre protegida contra imprevistos.
+                        </p>
+                        <a href="#contato" class="text-gold text-xs font-bold uppercase tracking-widest hover:underline">Saiba mais &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Card 2: Estética -->
+                <div class="group bg-dark-900 rounded-xl overflow-hidden shadow-lg border border-gray-800 hover:border-gold/40 transition duration-500">
+                    <div class="h-56 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition duration-500 z-10"></div>
+                        <!-- Imagem Local: Estética -->
+                        <img src="Estética Dental.jpeg" 
+                             alt="Procedimento de Estética Dental" 
+                             class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700">
+                    </div>
+                    <div class="p-8 relative">
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-gold transition">Estética Dental</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed mb-4">
+                            Clareamento, facetas e harmonização. Desenhamos o sorriso que combina perfeitamente com o seu rosto.
+                        </p>
+                        <a href="#contato" class="text-gold text-xs font-bold uppercase tracking-widest hover:underline">Saiba mais &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Card 3: Implantes -->
+                <div class="group bg-dark-900 rounded-xl overflow-hidden shadow-lg border border-gray-800 hover:border-gold/40 transition duration-500">
+                    <div class="h-56 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition duration-500 z-10"></div>
+                        <!-- Imagem Local: Implantes -->
+                        <img src="Implantes e Reabilitação.jpeg" 
+                             alt="Procedimento de Implante" 
+                             class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700">
+                    </div>
+                    <div class="p-8 relative">
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-gold transition">Implantes e Reabilitação</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed mb-4">
+                            Recupere a função e a confiança de mastigar e sorrir com implantes modernos e planejados digitalmente.
+                        </p>
+                        <a href="#contato" class="text-gold text-xs font-bold uppercase tracking-widest hover:underline">Saiba mais &rarr;</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO CONTATO -->
+    <section id="contato" class="py-24 bg-dark-900 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-gold opacity-5 rounded-full blur-[100px]"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col lg:flex-row bg-dark-800 rounded-2xl overflow-hidden shadow-2xl border border-gray-800">
+                
+                <div class="lg:w-1/2 p-10 md:p-14 flex flex-col justify-center">
+                    <h2 class="text-3xl font-bold text-white mb-6">Estamos à sua espera</h2>
+                    <p class="text-gray-400 mb-10 font-light">
+                        Agende sua consulta e dê o primeiro passo para o sorriso que sempre quis. Atendimento personalizado e horário flexível.
+                    </p>
+                    
+                    <div class="space-y-8">
+                        <div class="flex items-start group">
+                            <div class="w-12 h-12 rounded-full bg-dark-900 border border-gray-700 flex items-center justify-center text-gold group-hover:border-gold group-hover:bg-gold group-hover:text-dark-900 transition duration-300 mr-5 shrink-0">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gold uppercase tracking-widest font-bold mb-1">Telefone</p>
+                                <p class="text-xl text-white font-semibold">(11) 2668-7001</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start group">
+                            <div class="w-12 h-12 rounded-full bg-dark-900 border border-gray-700 flex items-center justify-center text-gold group-hover:border-gold group-hover:bg-gold group-hover:text-dark-900 transition duration-300 mr-5 shrink-0">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gold uppercase tracking-widest font-bold mb-1">Horário</p>
+                                <p class="text-gray-300">Segunda a Sexta: 08:00 - 19:00</p>
+                                <p class="text-gray-300">Sábado: 08:00 - 14:00</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start group">
+                            <div class="w-12 h-12 rounded-full bg-dark-900 border border-gray-700 flex items-center justify-center text-gold group-hover:border-gold group-hover:bg-gold group-hover:text-dark-900 transition duration-300 mr-5 shrink-0">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gold uppercase tracking-widest font-bold mb-1">Localização</p>
+                                <p class="text-gray-300">Mogi das Cruzes, SP <br> <span class="text-gray-500 text-sm">(Aguardando endereço completo)</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:w-1/2 relative min-h-[400px]">
+                    <!-- Imagem: Sala de Espera -->
+                    <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=800" 
+                         alt="Recepção do Consultório" 
+                         class="absolute inset-0 w-full h-full object-cover opacity-80">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-transparent to-transparent"></div>
+                    
+                    <div class="absolute bottom-10 left-0 right-0 text-center px-6">
+                        <a href="https://wa.me/551126687001" target="_blank" class="inline-flex items-center bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full font-bold shadow-lg transition transform hover:-translate-y-1">
+                            <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 12c0 1.8.48 3.47 1.34 4.94L2 22l5.3-1.42c1.4.82 3.02 1.3 4.74 1.3h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zM12.04 20.12h-.01c-1.5 0-2.93-.4-4.2-1.1l-.3-.18-3.12.82.84-3.05-.2-.32a8.03 8.03 0 0 1-1.22-4.28c0-4.47 3.63-8.1 8.1-8.1s8.1 3.63 8.1 8.1c0 4.47-3.64 8.1-8.1 8.1z"></path></svg>
+                            Agendar via WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black border-t border-gray-900 text-gray-500 py-10">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0 text-center md:text-left">
+                <p class="text-gray-400 font-serif text-lg">Dr. Edson Gonçalves Junior</p>
+                <p class="text-xs mt-1">CROSP 172088</p>
+            </div>
+            <div class="text-sm">
+                &copy; 2025 Todos os direitos reservados.
+            </div>
         </div>
     </footer>
 
-    <!-- 
-      SCRIPT (JavaScript)
-    -->
+    <!-- Scripts -->
     <script>
-        // Seleciona o botão e o menu mobile
         const menuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
-
-        // Adiciona um "ouvinte" de clique ao botão
-        menuButton.addEventListener('click', function() {
-            // Alterna a classe 'hidden' (escondido) no menu
+        
+        menuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
-    </script>
 
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
 </body>
 </html>
